@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Agnieszka Lewandowska-Cieślak" />
+    <title>DAY-1</title>
+    <link href="../CSS/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h2>DAY-1 * Drum Kit *</h2>
+    <p class="date">27.02.2023</p>
+    <p><a class="main_list" href="index.html">Go back</a></p>
+
+    <div class="keys">
+      <!------------------------------------>
+      <div data-key="65" class="key">
+        <kbd>A</kbd>
+        <span class="sound">clap</span>
+      </div>
+      <!------------------------------------>
+      <div data-key="83" class="key">
+        <kbd>S</kbd>
+        <span class="sound">hihat</span>
+      </div>
+      <!------------------------------------>
+      <div data-key="68" class="key">
+        <kbd>D</kbd>
+        <span class="sound">kick</span>
+      </div>
+      <!------------------------------------>
+      <div data-key="70" class="key">
+        <kbd>F</kbd>
+        <span class="sound">openhat</span>
+      </div>
+      <!------------------------------------>
+      <div data-key="71" class="key">
+        <kbd>G</kbd>
+        <span class="sound">boom</span>
+      </div>
+      <!------------------------------------>
+      <div data-key="72" class="key">
+        <kbd>H</kbd>
+        <span class="sound">ride</span>
+      </div>
+      <!------------------------------------>
+      <div data-key="74" class="key">
+        <kbd>J</kbd>
+        <span class="sound">snare</span>
+      </div>
+      <!------------------------------------>
+      <div data-key="75" class="key">
+        <kbd>K</kbd>
+        <span class="sound">tom</span>
+      </div>
+      <!------------------------------------>
+      <div data-key="76" class="key">
+        <kbd>L</kbd>
+        <span class="sound">tink</span>
+      </div>
+      <!------------------------------------>
+    </div>
+
+    <audio data-key="65" src="../SOUNDS/clap.wav"></audio>
+    <audio data-key="83" src="../SOUNDS/hihat.wav"></audio>
+    <audio data-key="68" src="../SOUNDS/kick.wav"></audio>
+    <audio data-key="70" src="../SOUNDS/openhat.wav"></audio>
+    <audio data-key="71" src="../SOUNDS/boom.wav"></audio>
+    <audio data-key="72" src="../SOUNDS/ride.wav"></audio>
+    <audio data-key="74" src="../SOUNDS/snare.wav"></audio>
+    <audio data-key="75" src="../SOUNDS/tom.wav"></audio>
+    <audio data-key="76" src="../SOUNDS/tink.wav"></audio>
+
+    <script>
+     function playSound(e) {
+      const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+      const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+      if(!audio) return;
+      // console.log(audio);
+      audio.currentTime = 0; //dżwiek bez zwłoki
+      audio.play(); //wywołuje dźwięk
+      // console.log(key); // wywołuje animacje boxu
+      key.classList.add('playing');//DODAJE ele do animacji
+    };
+    
+    
+    function removeTransition(e) {
+      // console.log(e);
+      if(e.propertyName !== 'transform') return;
+      // console.log(e.propertyName);
+      this.classList.remove('playing');
+    }       
+    const keys = document.querySelectorAll('.key');
+    keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+    window.addEventListener("keydown", playSound);
+    
+    </script>
+    <script src="DAY-1.js" type="module"></script>
+  </body>
+</html>
