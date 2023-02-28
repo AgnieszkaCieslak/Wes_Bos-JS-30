@@ -13,7 +13,7 @@ body {
   font-family: sans-serif;
   background: rgba(47, 48, 58, 0);
   background-repeat: no-repeat;
-  background: url("../IMAGES/el01.jpg");
+  background: url("IMAGES/el01.jpg");
   background-size: cover;
   background-position: center;
   background-size: 50%;
